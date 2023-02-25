@@ -1,6 +1,6 @@
 import pandas as pd
 import requests
-from bs4 import BeautifulSoup
+import streamlit as st
 
 url = 'https://www.pdga.com/tour/event/65206'
 
@@ -90,4 +90,5 @@ for owner in rosterDict.keys():
                 standings['FPO' + str(i - 3)][owner] = len(FPO)
             
 standings['Total'] = standings['MPO1'] + standings['MPO2'] + standings['MPO3'] + standings['MPO4'] + standings['FPO1'] + standings['FPO2']
-standings.sort_values(by = 'Total')
+ordered = standings.sort_values(by = 'Total')
+st.dataframe(data = ordered)
